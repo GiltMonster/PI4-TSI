@@ -1,5 +1,6 @@
 package br.senac.pi4.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -48,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Preencher todos os campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             makeLogin(email,pass)
         }
 
@@ -63,6 +63,8 @@ class LoginActivity : AppCompatActivity() {
                 if (response.isSuccessful){
                     val loginResponse = response.body()
                     Toast.makeText(applicationContext, "Bem vindo ${email}, ${loginResponse?.massage}", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    finish()
 
                 } else {
                     Toast.makeText(applicationContext, "Erro ao fazer login", Toast.LENGTH_LONG).show()
