@@ -4,7 +4,7 @@
     <string name="txt_login_desc_aluno">Bem-vindo, caro aluno !</string>
     <string name="txt_login_desc_aval">Bem-vindo, caro avalista !</string>
     <string name="email">E-mail</string>
-    <string name="password">Sennha</string>
+    <string name="password">Senha</string>
     <string name="btn_login">Logar-se</string>
     <string name="btn_cadastro">cad</string>
     <string name="swt_aluno">Aluno</string>

@@ -9,8 +9,11 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("logar")
-    fun login(@Body request: LoginRequest): Call<LoginResponse>
+    @POST("api/auth/login_avalista")
+    fun loginAvalista(@Body request: LoginRequest): Call<LoginResponse>
+
+    @POST("api/auth/login_aluno")
+    fun loginAluno(@Body request: LoginRequest): Call<LoginResponse>
 
     @GET("listarProjetos")
     fun listarProgetos(): Call<List<Grupo>>
