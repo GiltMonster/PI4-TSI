@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/top" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_view_title_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_view_desc_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,6 +77,9 @@
         android:layout_height="55dp"
         android:layout_marginTop="320dp"
         android:hint="@string/email"
+        app:boxStrokeColor="@color/bottom_nav_icon_colors"
+        app:cursorColor="@color/primary_auxiliary"
+        app:hintTextColor="@color/primary_auxiliary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +88,8 @@
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -95,6 +99,9 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/password"
+        app:boxStrokeColor="@color/bottom_nav_icon_colors"
+        app:cursorColor="@color/primary_auxiliary"
+        app:hintTextColor="@color/primary_auxiliary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,19 +114,20 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogar"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="240dp"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
         android:text="@string/btn_login"
+        android:textColor="@color/main"
         app:layout_constraintEnd_toStartOf="@+id/btnCadastro"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/password_layout"
         app:layout_constraintTop_toBottomOf="@+id/password_layout" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCadastro"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="100dp"

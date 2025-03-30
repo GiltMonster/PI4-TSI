@@ -1,5 +1,6 @@
 package br.senac.pi4.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import br.senac.pi4.R
 import br.senac.pi4.models.login.LoginRequest
 import br.senac.pi4.models.login.LoginResponse
 import br.senac.pi4.retroClient.RetrofitClient
+import br.senac.pi4.utils.toast
 import com.google.android.material.switchmaterial.SwitchMaterial
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
             val pass = passwordEditText.text.toString().trim()
 
             if (email.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Preencher todos os campos", Toast.LENGTH_SHORT).show()
+                toast("Por favor, preencha todos os campos", this)
                 return@setOnClickListener
             }
             makeLogin(email, pass)
@@ -82,31 +84,23 @@ class LoginActivity : AppCompatActivity() {
                     val loginResponse = response.body()
 
                     Log.d("Body", loginResponse.toString())
-                    Toast.makeText(
-                        applicationContext,
-                        loginResponse!!.message,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    toast(loginResponse!!.message, applicationContext)
+
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     finish()
 
-                } else {
-                    Toast.makeText(applicationContext, "Erro ao fazer login", Toast.LENGTH_LONG)
-                        .show()
+                } else if (response.code() == 401) {
+                    toast("E-mail ou senha incorretos!", applicationContext)
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(
-                    applicationContext,
-                    "Falha na conexão: ${t.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                toast("Erro na conexão: ${t.message}", applicationContext)
                 Log.e("Erro", " ${t.message}")
             }
         })
-
-
     }
+
+
 
 }
