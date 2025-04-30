@@ -14,4 +14,24 @@
     <string name="myProjects">Meus projetos</string>
     <string name="home">Home</string>
     <string name="settings">Configurações</string>
+    <string name="nome">Nome</string>
+    <string name="settings_theme">Alterar tema</string>
+    <string name="settings_theme_desc">alterar tema do app</string>
+    <string name="settings_social">Redes sociais</string>
+    <string name="settings_social_desc">Permito que minhas redes sociais fiquem visíveis !!</string>
+    <string name="settings_edit">Editar informações</string>
+    <string name="settings_edit_info_desc">Edite suas informações pessoais</string>
+    <string name="editar_perfil">Editar perfil</string>
+    <string name="editar_infos">Aqui você pode editar suas informações pessoais</string>
+    <string name="ra">RA</string>
+    <string name="curso">Curso</string>
+    <string name="foto">Foto URL</string>
+    <string name="semestre_in">Semestre iniciado</string>
+    <string name="github">GitHub</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">Linkedin</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="deletar_conta">Deletar Conta</string>
+    <string name="delete_desc">Delete sua conta aqui!!</string>
+
 </resources>
