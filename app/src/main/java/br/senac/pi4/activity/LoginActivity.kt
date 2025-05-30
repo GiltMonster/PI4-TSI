@@ -7,12 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.res.colorResource
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import br.senac.pi4.R
 import br.senac.pi4.models.login.LoginRequest
 import br.senac.pi4.models.login.LoginResponse
@@ -22,6 +17,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.core.content.edit
 
 class LoginActivity : AppCompatActivity() {
 
@@ -39,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
         switch_type_account = findViewById(R.id.switch_account)
         txt_login_desc = findViewById(R.id.txt_view_desc_login)
         val loginButton = findViewById<Button>(R.id.btnLogar)
+        val registerButton = findViewById<Button>(R.id.btnCadastro)
 
         switch_type_account.setOnClickListener {
             if (switch_type_account.isChecked) {
@@ -61,6 +58,11 @@ class LoginActivity : AppCompatActivity() {
             makeLogin(email, pass)
         }
 
+        registerButton.setOnClickListener {
+            val intent = Intent(this, CadastrarAlunoActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun makeLogin(email: String, password: String) {
@@ -79,7 +81,16 @@ class LoginActivity : AppCompatActivity() {
                     val loginResponse = response.body()
 
                     Log.d("Body", loginResponse.toString())
-                    toast(loginResponse!!.message, applicationContext)
+                    Log.d("token", loginResponse!!.access_token.toString())
+
+                    val sharedPreferences = getSharedPreferences("user_token", Context.MODE_PRIVATE)
+                    sharedPreferences.edit() {
+                        putString("user_token", loginResponse.access_token)
+                    }
+
+                    Log.d("token-shared", sharedPreferences.getString("user_token", "").toString())
+
+                    toast(loginResponse.message, applicationContext)
 
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     finish()
@@ -95,7 +106,6 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
-
 
 
 }

@@ -6,15 +6,14 @@ import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.window.Dialog
 import br.senac.pi4.R
 import br.senac.pi4.databinding.ActivitySettingsBinding
 import br.senac.pi4.fragment.BottomNavigationFragment
 import br.senac.pi4.models.user.Aluno
-import br.senac.pi4.models.user.UserSettings
 import br.senac.pi4.retroClient.RetrofitClient
 import br.senac.pi4.utils.toast
 import com.bumptech.glide.Glide
+import androidx.core.content.edit
 
 class SettingsActivity : AppCompatActivity(), BottomNavigationFragment.BottomNavigationListener {
 
@@ -46,8 +45,15 @@ class SettingsActivity : AppCompatActivity(), BottomNavigationFragment.BottomNav
             toast("Função ainda não implementada", this)
         }
 
-        val userId = intent.getStringExtra("userId") ?: "1142388872"
-        getUserInfoById(userId)
+//        val usertoken = getSharedPreferences("user_token", MODE_PRIVATE)
+//            .getString("user_token", null)
+//        if (usertoken != null) {
+//            getUserInfoByToken(usertoken)
+//        } else {
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
 
         binding.deleteInfo.setOnClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -55,8 +61,23 @@ class SettingsActivity : AppCompatActivity(), BottomNavigationFragment.BottomNav
                 .setTitle("Certeza disso?")
                 .setMessage("Tem certeza de que deseja excluir sua conta? Uma vez excluída, não há como voltar atrás.")
                 .setPositiveButton("Sim, tenho!") { dialog, which ->
-                    deleteUser(userId)
+                    deleteUser(user.aluno_id.toString())
+                }
+                .setNegativeButton("Não") { dialog, which ->
+                    // Do something else.
+                }
 
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
+
+        binding.btnLogout.setOnClickListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder
+                .setTitle("Certeza disso?")
+                .setMessage("Tem certeza de que deseja deslogar?")
+                .setPositiveButton("Sim, tenho!") { dialog, which ->
+                    logout()
                 }
                 .setNegativeButton("Não") { dialog, which ->
                     // Do something else.
@@ -73,6 +94,18 @@ class SettingsActivity : AppCompatActivity(), BottomNavigationFragment.BottomNav
             R.id.settings -> Log.d("MainActivity", "Settings foi re-selecionado")
             else -> Log.d("MainActivity", "Outro item foi re-selecionado")
         }
+    }
+
+    fun logout() {
+        val sharedPreferences = getSharedPreferences("user_token", MODE_PRIVATE)
+        sharedPreferences.edit() {
+            remove("user_token")
+        }
+
+        toast("Logout realizado com sucesso", this)
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     fun deleteUser(userId: String) {
@@ -98,22 +131,24 @@ class SettingsActivity : AppCompatActivity(), BottomNavigationFragment.BottomNav
         })
     }
 
-    fun getUserInfoById(userId: String) {
-        val call = RetrofitClient.instance.getUserById(userId)
+    fun getUserInfoByToken(userToken: String) {
+        val call = RetrofitClient.instance.verifyTokenAluno(userToken)
 
-        call.enqueue(object : retrofit2.Callback<UserSettings> {
+        call.enqueue(object : retrofit2.Callback<Aluno> {
             override fun onResponse(
-                call: retrofit2.Call<UserSettings>,
-                response: retrofit2.Response<UserSettings>
+                call: retrofit2.Call<Aluno>,
+                response: retrofit2.Response<Aluno>
             ) {
+
+                Log.d("SettingsActivity", "Response: ${response.body()}")
                 if (response.isSuccessful) {
                     val userInfo = response.body()
-                    user = userInfo?.aluno!!
+                    user = userInfo!!
                     // Atualize a interface do usuário com as informações do usuário
-                    binding.nomeUsuario.text = userInfo.aluno.aluno_nome
-                    binding.raUsuario.text = userInfo.aluno.aluno_id.toString()
+                    binding.nomeUsuario.text = userInfo.aluno_nome
+                    binding.raUsuario.text = userInfo.aluno_id.toString()
                     Glide.with(this@SettingsActivity)
-                        .load(userInfo.aluno.aluno_foto_url)
+                        .load(userInfo.aluno_foto_url)
                         .placeholder(R.drawable.person_add)
                         .error(R.drawable.manage_accounts)
                         .into(binding.imgProfile)
@@ -123,7 +158,7 @@ class SettingsActivity : AppCompatActivity(), BottomNavigationFragment.BottomNav
                 }
             }
 
-            override fun onFailure(call: retrofit2.Call<UserSettings>, t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<Aluno>, t: Throwable) {
                 toast("SettingsActivity Erro de conexão: ${t.message}", this@SettingsActivity)
             }
         }

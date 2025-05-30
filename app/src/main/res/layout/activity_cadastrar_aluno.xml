@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activity.InfoAlunoActivity">
+    tools:context=".activity.CadastrarAlunoActivity">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical"
@@ -21,14 +21,14 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/editar_perfil"
+            android:text="@string/cadastro_aluno"
             android:textSize="34sp" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/editar_infos"
+            android:text="@string/cadastro_info"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -47,7 +47,6 @@
                 android:id="@+id/editRA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -68,7 +67,6 @@
                 android:id="@+id/editNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +87,6 @@
                 android:id="@+id/editIdCurso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -110,7 +107,6 @@
                 android:id="@+id/editFotoUrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="textUri" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -131,7 +127,6 @@
                 android:id="@+id/editDateSemestre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="date" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -152,7 +147,6 @@
                 android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -173,7 +167,6 @@
                 android:id="@+id/editSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -194,7 +187,6 @@
                 android:id="@+id/editGitHub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="textUri" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -215,7 +207,6 @@
                 android:id="@+id/editInstagram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="textUri" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -236,7 +227,6 @@
                 android:id="@+id/editLinkedin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="textUri" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -251,11 +241,11 @@
             android:background="?android:attr/listDivider" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_atualizar"
+            android:id="@+id/btn_cadastrar"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/atualizar"
+            android:text="@string/cadastro_aluno"
             android:textColor="@color/main" />
 
         <com.google.android.material.button.MaterialButton
@@ -268,4 +258,4 @@
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

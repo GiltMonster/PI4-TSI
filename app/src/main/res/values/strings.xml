@@ -21,6 +21,8 @@
     <string name="settings_social_desc">Permito que minhas redes sociais fiquem visíveis !!</string>
     <string name="settings_edit">Editar informações</string>
     <string name="settings_edit_info_desc">Edite suas informações pessoais</string>
+    <string name="cadastro_aluno">Cadastrar Aluno</string>
+    <string name="cadastro_info">Aqui você pode cadastrar um aluno</string>
     <string name="editar_perfil">Editar perfil</string>
     <string name="editar_infos">Aqui você pode editar suas informações pessoais</string>
     <string name="ra">RA</string>
@@ -33,5 +35,7 @@
     <string name="atualizar">Atualizar</string>
     <string name="deletar_conta">Deletar Conta</string>
     <string name="delete_desc">Delete sua conta aqui!!</string>
-
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_logout">Logout</string>
+    <string name="btn_logout_desc">Sair do app</string>
 </resources>

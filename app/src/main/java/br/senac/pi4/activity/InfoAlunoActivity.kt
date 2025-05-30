@@ -1,7 +1,6 @@
 package br.senac.pi4.activity
 
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.senac.pi4.databinding.ActivityInfoAlunoBinding
@@ -48,7 +47,7 @@ class InfoAlunoActivity : AppCompatActivity() {
 
         binding.btnAtualizar.setOnClickListener {
             val aluno = AlunoRequest(
-                aluno_id = binding.editRA.text.toString().toInt(),
+                aluno_id = binding.editRA.text.toString(),
                 curso_id = 1,
                 aluno_nome = binding.editNome.text.toString(),
                 aluno_foto_url = binding.editFotoUrl.text.toString(),
@@ -64,6 +63,10 @@ class InfoAlunoActivity : AppCompatActivity() {
 
             atualizaConta(aluno.aluno_id.toString(), aluno)
 
+        }
+
+        binding.btnCancelar.setOnClickListener {
+            finish()
         }
     }
 
